@@ -1,5 +1,12 @@
 # fe-util 前端常用的js
 
+## 全局安装
+```js
+npm install --global rollup
+```
+
+node v12.16.0
+
 ## 目录
 
 ```pre

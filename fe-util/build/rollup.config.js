@@ -3,15 +3,16 @@ const serve = require('rollup-plugin-serve');
 
 import { getBabelOutputPlugin } from '@rollup/plugin-babel';
 
+
 const resolveFile = function(filePath) {
   return path.join(__dirname, '..', filePath)
 }
 
 module.exports = {
-  input: resolveFile('src/index.js'),
+  input: resolveFile('src/index.js'), // 入口
   output: {
     file: resolveFile('dist/index.js'),
-    format: 'umd',
+    format: 'esm',
     sourcemap: true, // 开发模式，开启sourcemap文件的生成
   },
   watch: {
@@ -24,6 +25,7 @@ module.exports = {
       // exclude: 'node_modules/**',
       presets: ['@babel/preset-env']
     }),
+
 
     // 使用开发服务插件
     serve({

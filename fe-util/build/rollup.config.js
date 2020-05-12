@@ -1,7 +1,7 @@
 const path = require('path');
-const babel = require('rollup-plugin-babel');
-const buble = require('rollup-plugin-buble');
 const serve = require('rollup-plugin-serve');
+
+import { getBabelOutputPlugin } from '@rollup/plugin-babel';
 
 const resolveFile = function(filePath) {
   return path.join(__dirname, '..', filePath)
@@ -14,27 +14,24 @@ module.exports = {
     format: 'umd',
     sourcemap: true, // 开发模式，开启sourcemap文件的生成
   },
+  watch: {
+    include: [resolveFile('src/**'), resolveFile('example/**')]
+  },
   plugins: [
     // 使用和配置babel编译插件
-    babel({
-      exclude: 'node_modules/**'
+    getBabelOutputPlugin({
+      allowAllFormats: true,
+      // exclude: 'node_modules/**',
+      presets: ['@babel/preset-env']
     }),
-    // babel({
-    //   "presets": [
-    //     ["env", {
-    //       "modules": false
-    //     }],
-    //   ],
-    //   "plugins": [
-    //     "transform-object-rest-spread",
-    //   ],
-    // }),
+
     // 使用开发服务插件
-    // serve({
-    //   port: 3002,
-    //   // 设置 exmaple的访问目录和dist的访问目录
-    //   contentBase: [resolveFile('example'), resolveFile('dist')]
-    // }),
-    buble()
+    serve({
+      open: true,
+      port: 3002,
+      // 设置 exmaple的访问目录和dist的访问目录
+      contentBase: [resolveFile('example'), resolveFile('dist')]
+    }),
+    // buble()
   ],
 }

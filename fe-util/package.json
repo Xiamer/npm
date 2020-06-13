@@ -21,5 +21,8 @@
     "cross-env": "^7.0.2",
     "rollup": "^2.9.0",
     "rollup-plugin-serve": "^1.0.1"
+  },
+  "dependencies": {
+    "@tal/utils": "0.0.20"
   }
 }

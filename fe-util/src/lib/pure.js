@@ -70,8 +70,23 @@ function throttle(fn, wait, options = {}) {
   return throttled;
 }
 
+/***
+ * @param {string | number} 千分位
+ *
+ * @description 123456.23 -> 123,456.23
+ *
+ * https://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
+ */
+export const numWithCommas = (x) => {
+  if(x === '-') return '-'
+  if (!x) return 0
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+
 
 {
   debounce,
-  throttle
+  throttle,
+  numWithCommas
 }

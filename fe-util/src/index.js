@@ -5,6 +5,7 @@ import * as browser from './lib/browser'; // 浏览器相关
 import * as dom from './lib/dom'; // dom相关
 import * as design from './lib/design'; // 设计模式相关
 import * as pure from './lib/pure'; // 纯函数
+import * as idCard from './lib/id-card' // 身份证
 
 
 const arr1 = [1,2,3];
@@ -16,7 +17,6 @@ async function initDemo () {
   let data = await demo();
   console.log(data);
 }
-console.log('zzz');
 
 initDemo();
 
@@ -26,6 +26,7 @@ export {
   browser,
   design,
   dom,
-  pure
+  pure,
+  idCard
 }
 

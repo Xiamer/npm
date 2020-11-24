@@ -12,22 +12,22 @@
 
 function debounce(fn, wait, immediate) {
   let timer;
-  return function() {
-      if (timer) clearTimeout(timer);
-      if (immediate) {
-          // 如果已经执行过，不再执行
-          var callNow = !timer;
-          timer = setTimeout(() => {
-              timer = null;
-          }, wait)
-          if (callNow) {
-              fn.apply(this, arguments)
-          }
-      } else {
-          timer = setTimeout(() => {
-              fn.apply(this, arguments)
-          }, wait);
+  return function () {
+    if (timer) clearTimeout(timer);
+    if (immediate) {
+      // 如果已经执行过，不再执行
+      var callNow = !timer;
+      timer = setTimeout(() => {
+        timer = null;
+      }, wait)
+      if (callNow) {
+        fn.apply(this, arguments)
       }
+    } else {
+      timer = setTimeout(() => {
+        fn.apply(this, arguments)
+      }, wait);
+    }
   }
 }
 
@@ -47,25 +47,25 @@ function debounce(fn, wait, immediate) {
 function throttle(fn, wait, options = {}) {
   let timer;
   let previous = 0;
-  let throttled = function() {
-      let now = +new Date();
-      // remaining 不触发下一次函数的剩余时间
-      if (!previous && options.leading === false) previous = now;
-      let remaining = wait - (now - previous);
-      if (remaining < 0) {
-          if (timer) {
-              clearTimeout(timer);
-              timer = null;
-          }
-          previous = now;
-          fn.apply(this, arguments)
-      } else if (!timer && options.trailing !== false) {
-          timer = setTimeout(() => {
-              previous = options.leading === false ? 0 : new Date().getTime();
-              timer = null;
-              fn.apply(this, arguments);
-          }, remaining);
+  let throttled = function () {
+    let now = +new Date();
+    // remaining 不触发下一次函数的剩余时间
+    if (!previous && options.leading === false) previous = now;
+    let remaining = wait - (now - previous);
+    if (remaining < 0) {
+      if (timer) {
+        clearTimeout(timer);
+        timer = null;
       }
+      previous = now;
+      fn.apply(this, arguments)
+    } else if (!timer && options.trailing !== false) {
+      timer = setTimeout(() => {
+        previous = options.leading === false ? 0 : new Date().getTime();
+        timer = null;
+        fn.apply(this, arguments);
+      }, remaining);
+    }
   }
   return throttled;
 }
@@ -77,16 +77,54 @@ function throttle(fn, wait, options = {}) {
  *
  * https://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
  */
-export const numWithCommas = (x) => {
-  if(x === '-') return '-'
+const numWithCommas = (x) => {
+  if (x === '-') return '-'
   if (!x) return 0
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
 
+/**
+ * 获取指定的key的值
+ * @param {Object} data 对象
+ * @param {String} keys a.b.c
+ */
+const getValueWithKey = (obj, keys) => {
+  return keys.split('.').reduce((pre, cur) => {
+    if (!(pre instanceof Object) && cur) return undefined
+    if (pre[cur]) return pre[cur]
+  }, obj)
+}
 
-{
+/**
+ * url 解析
+ * https://stackoverflow.com/questions/1420881/how-to-extract-base-url-from-a-string-in-javascript
+ *
+ * @param {String} url url
+ *
+ * @returns {Object}
+ *
+ */
+const parseUrl = (url) => {
+  if (typeof URL === 'function') {
+    const m = new URL(url)
+    const { host, hostname, pathname, port, protocol, search, hash } = m;
+    return { origin, host, hostname, pathname, port, protocol, search, hash }
+  } else {
+    const a = document.createElement('a');
+    a.setAttribute('href', url);
+    const { host, hostname, pathname, port, protocol, search, hash } = a;
+    const origin = `${protocol}//${hostname}${port.length ? `:${port}` : ''}`
+    return { origin, host, hostname, pathname, port, protocol, search, hash }
+  }
+}
+
+
+
+export {
   debounce,
   throttle,
-  numWithCommas
+  numWithCommas,
+  getValueWithKey,
+  parseUrl
 }

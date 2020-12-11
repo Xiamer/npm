@@ -1,3 +1,4 @@
+
 const idCardUtil = {
   /*省,直辖市代码表*/
   provinceAndCitys: {
@@ -57,7 +58,6 @@ const idCardUtil = {
     return idCardUtil.parityBit[mod];
   },
 
-  /*验证校检码*/
   checkParityBit: function (idCardNo) {
     let parityBit = idCardNo.charAt(17).toUpperCase();
     if (idCardUtil.getParityBit(idCardNo) == parityBit) {
@@ -225,3 +225,5 @@ const idCardUtil = {
 
 
 export default idCardUtil
+
+

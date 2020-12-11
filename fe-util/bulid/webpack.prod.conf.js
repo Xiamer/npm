@@ -1,4 +1,4 @@
-const merge = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const base = require('./webpack.base.conf');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
@@ -14,7 +14,7 @@ module.exports = merge(base, {
         options: {
           presets: ["@babel/preset-env"],
           plugins: [
-            "@babel/plugin-transform-runtime",
+            // "@babel/plugin-transform-runtime",
             "@babel/plugin-proposal-class-properties",
           ],
         },
@@ -23,19 +23,19 @@ module.exports = merge(base, {
   },
   optimization: {
     minimizer: [
-      new UglifyJsPlugin({
-        uglifyOptions: {
-          // 删除注释
-          output: {
-            comments: false
-          },
-          // 删除 console 和 debugger
-          compress: {
-            drop_debugger: true,
-            drop_console: true
-          }
-        }
-      })
+      // new UglifyJsPlugin({
+      //   uglifyOptions: {
+      //     // 删除注释
+      //     output: {
+      //       comments: false
+      //     },
+      //     // 删除 console 和 debugger
+      //     compress: {
+      //       drop_debugger: true,
+      //       drop_console: true
+      //     }
+      //   }
+      // })
     ]
   }
 })

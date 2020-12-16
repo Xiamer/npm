@@ -112,7 +112,7 @@ const idCardUtil = {
     let birDayCode = idCardNo.substring(6, 14);
     check = idCardUtil.checkBirthDayCode(birDayCode);
     if (!check) return false;
-    //验证校检码
+    // 验证校检码
     return idCardUtil.checkParityBit(idCardNo);
   },
 
@@ -123,7 +123,7 @@ const idCardUtil = {
     return yyyy + '-' + mm + '-' + dd;
   },
 
-  //获取信息
+  // 获取信息
   getIdCardInfo: function (idCardNo) {
     let idCardInfo = {
       gender: '',  //性别

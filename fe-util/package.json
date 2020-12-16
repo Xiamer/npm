@@ -1,8 +1,8 @@
 {
-  "name": "fe-util",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "x-fe-util",
+  "version": "0.0.1",
+  "description": "fe util",
+  "main": "./dist/index.min.js",
   "directories": {
     "example": "example"
   },
@@ -13,6 +13,11 @@
   },
   "author": "xiamer",
   "license": "ISC",
+  "homepage": "",
+  "keywords": [
+    "fe",
+    "fe-util"
+  ],
   "devDependencies": {
     "@babel/core": "^7.12.9",
     "@babel/plugin-proposal-class-properties": "^7.12.1",
@@ -27,13 +32,11 @@
     "husky": "^4.3.0",
     "jsdoc": "^3.6.6",
     "jsdoc-to-markdown": "^6.0.1",
-    "uglifyjs-webpack-plugin": "^2.2.0",
-    "webpack": "^5.9.0",
+    "webpack": "^5.10.0",
     "webpack-cli": "^4.2.0",
     "webpack-dev-server": "^3.11.0",
     "webpack-merge": "^5.4.0"
   },
-  "dependencies": {},
   "husky": {
     "hooks": {
       "commit-msg": "commitlint -e $GIT_PARAMS"

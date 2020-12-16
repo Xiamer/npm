@@ -1,3 +1,9 @@
+<!--
+ * @Author: xiaoguang_10@qq.com
+ * @LastEditors: xiaoguang_10@qq.com
+ * @Date: 2020-06-14 00:53:12
+ * @LastEditTime: 2020-12-16 16:15:01
+-->
 ### git 提交规范
 
 1. commit信息要具备语义性，避免提交类似(bugfix、代码优化)等模棱两可的代码
@@ -31,3 +37,4 @@
 2. package: 添加、删除、变更npm包
 3. editor: 更新编辑器代码
 4. delete: 删除废弃代码，无用注释（不影响代码运行）****
+

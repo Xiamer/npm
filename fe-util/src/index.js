@@ -20,6 +20,8 @@ async function initDemo () {
 
 initDemo();
 
+browser.docCookies.setItem('aaa', 'xxx')
+
 
 
 export {

@@ -1,10 +1,19 @@
+/*
+ * @Author: xiaoguang_10@qq.com
+ * @LastEditors: xiaoguang_10@qq.com
+ * @Date: 2020-06-14 00:42:54
+ * @LastEditTime: 2020-12-14 16:43:49
+ */
 const { merge } = require('webpack-merge');
 const base = require('./webpack.base.conf');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 
 module.exports = merge(base, {
   mode: "production",
+  output: {
+    libraryTarget: 'umd'
+  },
   module: {
     rules: [
       {
@@ -22,20 +31,16 @@ module.exports = merge(base, {
     ],
   },
   optimization: {
+    minimize: true,
     minimizer: [
-      // new UglifyJsPlugin({
-      //   uglifyOptions: {
-      //     // 删除注释
-      //     output: {
-      //       comments: false
-      //     },
-      //     // 删除 console 和 debugger
-      //     compress: {
-      //       drop_debugger: true,
-      //       drop_console: true
-      //     }
-      //   }
-      // })
+      new TerserPlugin({
+        test: /\.js(\?.*)?$/i,
+        terserOptions: {
+          output: {
+          },
+        }
+      })
     ]
-  }
+  },
+  plugins: [],
 })

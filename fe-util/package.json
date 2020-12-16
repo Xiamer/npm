@@ -13,7 +13,8 @@
   },
   "author": "xiamer",
   "license": "ISC",
-  "homepage": "",
+  "homepage": "https://github.com/Xiamer/npm/blob/master/fe-util/README.md",
+  "repository": "https://github.com/Xiamer/npm/blob/master/fe-util",
   "keywords": [
     "fe",
     "fe-util"
